@@ -11,7 +11,7 @@ const generateEncryptedJwt = (subject, payload, secret) => {
 		.encrypt(secret);
 };
 
-const decodeJwt = async (jwt, secret) => {
+const decryptJwt = async (jwt, secret) => {
 	const options = {
 		issuer: "https://example.com",
 		audience: "https://example.com/test",
@@ -47,7 +47,7 @@ const secret = Buffer.from("62197fc8886bd3b739dd2cc8aa109d0be93acdea64c07b890816
 
 const encryptedJwt = await generateEncryptedJwt("testsub", payload, secret);
 
-const decrypted = await decodeJwt(encryptedJwt, secret);
+const decrypted = await decryptJwt(encryptedJwt, secret);
 
 const signedJwt = await signJwt("testsub", payload, secret);
 const verifiedJwt = await verifyJwt(signedJwt, secret);
